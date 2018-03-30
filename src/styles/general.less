@@ -1,0 +1,15 @@
+.with-fixed-header {
+  padding-top: 72px;
+
+  & > .header {
+    top: 0;
+    left: 0;
+    width: 100%;
+    position: fixed;
+    z-index: 2;
+  }
+
+  & > .content {
+    z-index: 1;
+  }
+}
