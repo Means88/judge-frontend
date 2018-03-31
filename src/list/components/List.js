@@ -1,9 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import ListItem from './ListItem';
 
 class List extends React.Component {
   render() {
-    return null;
+    return (
+      <div className="problem-list">
+        <ListItem />
+      </div>
+    );
   }
 }
 

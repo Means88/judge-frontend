@@ -1,0 +1,46 @@
+.problem-list {
+  margin-top: 24px;
+
+  .problem-list-item {
+    border: 1px solid #e5e5e5;
+    border-radius: 4px;
+    padding: 12px;
+    background-color: white;
+    transition: background-color 0.15s;
+    cursor: pointer;
+    display: flex;
+
+    &:hover {
+      background-color: #f5f6f9;
+    }
+
+    & > .picture {
+      display: block;
+      width: 64px;
+      height: 64px;
+      background-color: #e5e5e5;
+      border-radius: 7px;
+      margin-right: 15px;
+    }
+
+    & > .text {
+      flex: 1 1 0;
+
+      .title {
+        font-size: 16px;
+      }
+
+      .description {
+        font-size: 14px;
+        color: #777;
+      }
+    }
+
+    & > .status {
+      display: flex;
+      align-items: center;
+    }
+  }
+}
+
+
