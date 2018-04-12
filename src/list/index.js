@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Header from '../shared/components/Header';
 import List from './components/List';
+import problems from '../data/problems';
 import './index.less';
 
 class App extends Component {
@@ -9,11 +10,8 @@ class App extends Component {
       <div className="App with-fixed-header">
         <Header />
         <div className="content container">
-          <List />
+          <List problems={problems} />
         </div>
-        <p className="App-intro" style={{ height: 800 }}>
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
       </div>
     );
   }

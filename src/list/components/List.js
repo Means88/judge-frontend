@@ -6,18 +6,20 @@ class List extends React.Component {
   render() {
     return (
       <div className="problem-list">
-        <ListItem />
+        {this.props.problems.map(problem => (
+          <ListItem key={problem.id} problem={problem} />
+        ))}
       </div>
     );
   }
 }
 
 List.propTypes = {
-
+  problems: PropTypes.array,
 };
 
 List.defaultProps = {
-
+  problems: [],
 };
 
 export default List;
