@@ -46,17 +46,29 @@ export default class BaseStore {
   }
 
   toString() {
-    return JSON.stringify(this, (k, v) => {
-      if (k[0] === '_') {
-        return undefined;
-      }
-      return v;
-    });
+    if (!this.storedProperties) {
+      return '{}';
+    }
+    const result = {};
+    for (let i = 0; i < this.storedProperties.length; i++) {
+      const key = this.storedProperties[i];
+      result[key] = this[key];
+    }
+    return JSON.stringify(result);
   }
 
   fromString(str) {
-    const obj = JSON.parse(str);
+    let obj;
+    try {
+      obj = JSON.parse(str);
+    } catch (e) {
+      obj = {};
+    }
+
     for (const key in obj) {
+      if (this.storedProperties.indexOf(key) === -1) {
+        continue;
+      }
       this[key] = obj[key];
     }
   }

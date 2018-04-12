@@ -6,7 +6,7 @@ function delay(value, time) {
   });
 }
 
-function delayApply(func, args, time = 500) {
+function delayApply(func, args, time = 750) {
   const result = func.apply(this, args);
   return delay(result, time);
 }
@@ -44,6 +44,8 @@ const getter = {
       count: list.length,
       results,
       next: !!list[j],
+      first: list[0].id,
+      last: list[list.length - 1].id,
     }
   }
 };
