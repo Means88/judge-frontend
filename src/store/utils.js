@@ -43,3 +43,12 @@ export function refreshList(target, source, options = {}) {
   }
   return result;
 }
+
+export function Cancelable(promise) {
+  let _reject = null;
+  const result = Promise.race([promise, new Promise((_, reject) => {
+    _reject = reject;
+  })]);
+  result.cancel = _reject.bind(null);
+  return result;
+}

@@ -40,13 +40,24 @@ const getter = {
       results.push(list[j]);
       j++;
     }
-    return {
+    const data = {
       count: list.length,
-      results,
+      results: results.map(result => ({
+        id: result.id,
+        title: result.title,
+        status: result.status,
+        picture: result.picture,
+        description: result.description,
+      })),
       next: !!list[j],
       first: list[0].id,
       last: list[list.length - 1].id,
-    }
+    };
+    return JSON.parse(JSON.stringify(data));
+  },
+  getObject(list, id) {
+    const data = list.find(i => i.id === id);
+    return JSON.parse(JSON.stringify(data));
   }
 };
 

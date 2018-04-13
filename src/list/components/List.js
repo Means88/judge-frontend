@@ -7,7 +7,12 @@ class List extends React.Component {
     return (
       <div className="problem-list">
         {this.props.problems.map(problem => (
-          <ListItem key={problem.id} problem={problem} />
+          <ListItem
+            key={problem.id}
+            problem={problem}
+            loading={problem.id === this.props.loadingId}
+            onClick={this.props.onItemClick}
+          />
         ))}
       </div>
     );
@@ -16,10 +21,14 @@ class List extends React.Component {
 
 List.propTypes = {
   problems: PropTypes.array,
+  loadingId: PropTypes.number,
+  onItemClick: PropTypes.func,
 };
 
 List.defaultProps = {
   problems: [],
+  loadingId: null,
+  onItemClick: undefined,
 };
 
 export default List;

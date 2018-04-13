@@ -1,6 +1,6 @@
 import { observable, action } from 'mobx';
 import BaseStore from './BaseStore';
-import request from '../data/request';
+import provider from '../data/request';
 import problems from '../data/problems';
 import { refreshList } from './utils';
 
@@ -31,7 +31,7 @@ class ListStore extends BaseStore {
       this.apply();
       return;
     }
-    request.requestPaginatedData(problems, this.refreshCursor).then((data) => {
+    provider.requestPaginatedData(problems, this.refreshCursor).then((data) => {
       const problems = data.results;
       this.list = refreshList(this.list, problems, {
         first: data.first,
@@ -50,7 +50,7 @@ class ListStore extends BaseStore {
     }
 
     this.loading = true;
-    return request.requestPaginatedData(problems, this.cursor).then((data) => {
+    return provider.requestPaginatedData(problems, this.cursor).then((data) => {
       const problems = data.results;
       this.list = refreshList(this.list, problems, {
         first: data.first,

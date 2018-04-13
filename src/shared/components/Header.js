@@ -22,7 +22,7 @@ export default class Header extends React.Component {
       <header className={`header clearfix ${className}`} style={style}>
         <div className="container">
           <div className="header-logo">
-            <Link to='/'>
+            <Link to='/' style={{ textDecoration: 'none' }}>
               <img src={reactLogo} alt="React" width={48} />
               <span className="header-logo-text">Judge</span>
             </Link>

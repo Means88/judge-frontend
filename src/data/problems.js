@@ -6,6 +6,11 @@ export default [{
   description: 'Write a function that add two numbers A and B.',
   status: SUBMISSION_STATUS.AC,
   picture: 'https://avatars1.githubusercontent.com/u/5810331?s=460&v=4',
+  input: '输入为一行，包含两个整数A，B。数据保证A与B都在2^31-1的范围内',
+  output: '输入A与B的和，数据保证A与B的和在2^31-1的范围内',
+  sampleInput: '1 3',
+  sampleOutput: '4',
+  hint: '...',
 }, {
   id: 2,
   title: 'Trailing Zeros',
