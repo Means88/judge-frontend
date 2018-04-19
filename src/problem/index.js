@@ -5,6 +5,7 @@ import MarkdownIt from 'markdown-it';
 import 'github-markdown-css';
 import Header from '../shared/components/Header';
 import ProblemStore from '../store/ProblemStore';
+import Editor from '../shared/components/Editor';
 import './index.less';
 
 function createMarkdown(problem) {
@@ -65,6 +66,14 @@ class ProblemPage extends Component {
           className="content container markdown-body problem-content"
           dangerouslySetInnerHTML={{ __html: this.renderContent() }}
         />
+        <div className="container">
+          <Editor />
+          <div className="clearfix" style={{ margin: '15px 0' }}>
+            <button className="btn btn-primary pull-right">
+              提交
+            </button>
+          </div>
+        </div>
       </div>
     );
   }
