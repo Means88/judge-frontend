@@ -30,6 +30,10 @@ class ProblemStore {
       throw e;
     });
   }
+
+  @action reset() {
+    this.problem = null;
+  }
 }
 
 export default new ProblemStore();

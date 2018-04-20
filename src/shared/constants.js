@@ -1,4 +1,5 @@
 export const SUBMISSION_STATUS = {
+  PENDING: 0,
   AC: 1,
   WA: 2,
   CE: 3,

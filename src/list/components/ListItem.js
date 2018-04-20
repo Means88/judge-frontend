@@ -13,12 +13,12 @@ export default class ListItem extends React.Component {
 
   render() {
     const { picture, title, description, status } = this.props.problem;
-    const { text, color } = getStatusConfig(status);
+    const { abbr, color } = getStatusConfig(status);
     return (
       <div className="problem-list-item" onClick={this.onClick}>
         <div className="picture" style={{ backgroundImage: `url("${picture}")` }} />
         <div className="text">
-          <h3 className="title">
+          <h3 className="title text-ellipsis">
             {title} {this.props.loading && <Icon icon={faSpinner} spin />}
           </h3>
           <div className="description">
@@ -26,7 +26,7 @@ export default class ListItem extends React.Component {
           </div>
         </div>
         <div className={`status text-${color}`}>
-          <span>{text}</span>
+          <span>{abbr}</span>
         </div>
       </div>
     );

@@ -31,6 +31,9 @@ class ListPage extends Component {
     if (document.body.scrollHeight - window.innerHeight - window.scrollY >= 120) {
       return;
     }
+    if (ListStore.loading) {
+      return;
+    }
     if (!ListStore.hasNext) {
       return;
     }

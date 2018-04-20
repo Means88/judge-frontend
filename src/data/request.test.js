@@ -10,7 +10,7 @@ it('get paginated data', () => {
   expect(result.results[9].id).toBe(10);
   expect(result.next).toBe(true);
 
-  result = request.getPaginatedData(problems, 24, 10);
+  result = request.getPaginatedData(problems, { cursor: 24, limit: 10 });
   expect(result.count).toBe(problems.length);
   expect(result.results.length).toBe(1);
   expect(result.results[0].id).toBe(25);
@@ -27,7 +27,7 @@ it('request paginated data', (done) => {
     expect(result.next).toBe(true);
   });
 
-  promise = request.requestPaginatedData(problems, 24, 10);
+  promise = request.requestPaginatedData(problems, { cursor: 24, limit: 10 });
   const b = promise.then((result) => {
     expect(result.count).toBe(problems.length);
     expect(result.results.length).toBe(1);

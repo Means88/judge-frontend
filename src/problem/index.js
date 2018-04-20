@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { observer } from 'mobx-react';
-import { withRouter } from 'react-router-dom';
+import { withRouter, Link } from 'react-router-dom';
 import MarkdownIt from 'markdown-it';
 import 'github-markdown-css';
+import Loading from '../shared/components/Loading';
 import Header from '../shared/components/Header';
 import ProblemStore from '../store/ProblemStore';
 import Editor from '../shared/components/Editor';
@@ -50,6 +51,10 @@ class ProblemPage extends Component {
     ProblemStore.retrieve(id);
   }
 
+  componentWillUnmount() {
+    ProblemStore.reset();
+  }
+
   renderContent() {
     const md = new MarkdownIt({
       breaks: true,
@@ -59,21 +64,35 @@ class ProblemPage extends Component {
   }
 
   render() {
+    const id = parseInt(this.props.match.params.id);
+
     return (
       <div className="with-fixed-header">
         <Header />
-        <div
-          className="content container markdown-body problem-content"
-          dangerouslySetInnerHTML={{ __html: this.renderContent() }}
-        />
-        <div className="container">
-          <Editor />
-          <div className="clearfix" style={{ margin: '15px 0' }}>
-            <button className="btn btn-primary pull-right">
-              提交
-            </button>
-          </div>
-        </div>
+        {ProblemStore.loadingId !== null ?
+          <div style={{ marginTop: 50 }}>
+            <Loading />
+          </div> :
+          <React.Fragment>
+            <div
+              className="content container markdown-body problem-content"
+              dangerouslySetInnerHTML={{ __html: this.renderContent() }}
+            />
+            <div className="container">
+              <Editor />
+              <div className="clearfix" style={{ margin: '15px 0' }}>
+                <div className="btn-group pull-right">
+                  <Link className="btn btn-outline-primary" to={`/submission/?problem=${id}`}>
+                    查看历史记录
+                  </Link>
+                  <button className="btn btn-primary">
+                    提交
+                  </button>
+                </div>
+              </div>
+            </div>
+          </React.Fragment>
+        }
       </div>
     );
   }

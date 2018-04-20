@@ -28,11 +28,37 @@ const handler = {
   }
 };
 
+const filter = fields => obj => {
+  if (fields === null) {
+    return Object.assign({}, obj);
+  }
+  const result = {};
+  for (let i = 0; i < fields.length; i++) {
+    const key = fields[i];
+    result[key] = obj[key];
+  }
+  return result;
+};
+
 const getter = {
-  getPaginatedData(list, cursor = 0, limit = 10) {
+  getPaginatedData(list, options) {
+    const { cursor, limit, reversed, fields } = Object.assign({
+      cursor: 0,
+      limit: 10,
+      reversed: false,
+      fields: null,
+    }, options);
+
+    function cmp(a, b) {
+      if (reversed) {
+        return a >= b;
+      }
+      return a <= b;
+    }
+
     const results = [];
     let i = 0;
-    while (list[i] && list[i].id <= cursor) {
+    while (list[i] && cmp(list[i].id, cursor)) {
       i++;
     }
     let j = i;
@@ -42,13 +68,7 @@ const getter = {
     }
     const data = {
       count: list.length,
-      results: results.map(result => ({
-        id: result.id,
-        title: result.title,
-        status: result.status,
-        picture: result.picture,
-        description: result.description,
-      })),
+      results: results.map(filter(fields)),
       next: !!list[j],
       first: list[0].id,
       last: list[list.length - 1].id,
