@@ -1,6 +1,5 @@
 import { observable, action } from 'mobx';
-import problems from '../data/problems';
-import provider from '../data/request';
+import provider from '../data/provider';
 import { Cancelable } from './utils';
 
 class ProblemStore {
@@ -17,8 +16,8 @@ class ProblemStore {
       this.lastRequest.cancel(this.CancelSymbol);
     }
     this.loadingId = id;
-    this.lastRequest = Cancelable(provider.requestObject(problems, id));
-    return this.lastRequest.then((problem) => {
+    this.lastRequest = Cancelable(provider.getProblem(id));
+    return this.lastRequest.then(result => result.data).then((problem) => {
       this.problem = problem;
       this.loadingId = null;
       this.lastRequest = null;
