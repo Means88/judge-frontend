@@ -32,7 +32,7 @@ export default class Submission extends React.Component {
     if (SubmissionStore.loading) {
       return;
     }
-    if (!SubmissionStore.hasNext) {
+    if (SubmissionStore.nextUrl === null) {
       return;
     }
     SubmissionStore.loadMore();

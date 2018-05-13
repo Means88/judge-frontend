@@ -24,7 +24,9 @@ class ListPage extends Component {
   gotoDetail = (id) => {
     ProblemStore.retrieve(id).then(() => {
       this.props.history.push(`/problem/${id}/`);
-    }).catch(() => {/* pass */})
+    }).catch((e) => {
+      console.log(e);
+    });
   };
 
   onScroll = debounce(() => {

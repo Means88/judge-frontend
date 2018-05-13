@@ -3,7 +3,7 @@ export function parseQueryString(query) {
     query = query.slice(1);
   }
   const obj = {};
-  const pairs = query.slice('&');
+  const pairs = query.split('&');
   for (let i = 0; i < pairs.length; i++) {
     const [key, value] = pairs[i].split('=');
     obj[key] = decodeURIComponent(value);

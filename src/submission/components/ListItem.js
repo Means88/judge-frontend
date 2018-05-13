@@ -11,6 +11,10 @@ export default class ListItem extends React.Component {
 
   renderMemoryCost() {
     let cost = this.props.submission.memory_cost;
+    if (!cost) {
+      return '-';
+    }
+
     let unit = 'B';
     if (cost > 1000) {
       cost /= 1024;
@@ -24,7 +28,7 @@ export default class ListItem extends React.Component {
   }
 
   render() {
-    const { id, user, problem, status, time_cost: timeCost } = this.props.submission;
+    const { id, problem, status, time_cost: timeCost } = this.props.submission;
     const config = getStatusConfig(status);
 
     return (
@@ -36,7 +40,7 @@ export default class ListItem extends React.Component {
         <td>
           <span className={`text-${config.color}`}>{config.abbr}</span>
         </td>
-        <td>{timeCost} ms</td>
+        <td>{timeCost ? `${timeCost} ms` : '-'}</td>
         <td>{this.renderMemoryCost()}</td>
       </tr>
     );

@@ -1,42 +1,31 @@
 import { observable, action, computed } from 'mobx';
-import provider from '../data/request';
-import { generateSubmissions } from '../data/submissions';
-
-let submissions = generateSubmissions({ count: 35 });
-const fields = ['id', 'user', 'problem', 'status', 'time_cost', 'memory_cost'];
+import provider from '../data/provider';
 
 class SubmissionStore {
   @observable list = [];
   @observable loading = false;
-  @observable hasNext = true;
+  @observable nextUrl = null;
 
   @action initial(problemId) {
-    submissions = generateSubmissions({ count: 35, problemId });
+    this.problemId = problemId;
     this.list = [];
     this.loading = false;
-    this.hasNext = true;
+    this.nextUrl = `/api/submission/?problem=${problemId}`;
     this.loadMore();
   }
 
   @action loadMore() {
-    if (!this.hasNext) {
+    if (this.nextUrl === null) {
       return Promise.resolve();
     }
 
     this.loading = true;
-    return provider.requestPaginatedData(submissions, { cursor: this.cursor, reversed: true, fields }).then((data) => {
+    return provider.get(this.nextUrl).then(({ data }) => {
       const submissions = data.results;
       this.list = this.list.concat(submissions);
-      this.hasNext = data.next;
+      this.nextUrl = data.next && data.next.replace(/https?:\/\/[^/]*/, '');
       this.loading = false;
     });
-  }
-
-  @computed get cursor() {
-    if (this.list.length === 0) {
-      return Infinity;
-    }
-    return this.list[this.list.length - 1].id;
   }
 }
 
