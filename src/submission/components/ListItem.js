@@ -24,7 +24,7 @@ export default class ListItem extends React.Component {
       cost /= 1024;
       unit = 'MB';
     }
-    return `${cost} ${unit}`;
+    return `${cost.toFixed(2)} ${unit}`;
   }
 
   render() {

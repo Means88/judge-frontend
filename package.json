@@ -30,6 +30,8 @@
   },
   "devDependencies": {
     "babel-eslint": "^8.2.2",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
     "eslint": "^4.19.1",
     "eslint-plugin-import": "^2.9.0",
     "eslint-plugin-jsx-a11y": "^6.0.3",
@@ -37,6 +39,7 @@
     "expect": "^22.4.3",
     "react-app-rewire-less": "^2.1.1",
     "react-app-rewire-mobx": "^1.0.8",
-    "react-app-rewired": "^1.5.0"
+    "react-app-rewired": "^1.5.0",
+    "react-test-renderer": "^16.3.2"
   }
 }

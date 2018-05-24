@@ -29,12 +29,12 @@ ${problem.output}
 
 ## 样例输入
 \`\`\`
-${problem.sampleInput}
+${problem.sample_input}
 \`\`\`
 
 ## 样例输出
 \`\`\`
-${problem.sampleOutput}
+${problem.sample_output}
 \`\`\`
 
 ## 数据范围及提示

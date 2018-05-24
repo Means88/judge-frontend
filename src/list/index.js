@@ -22,10 +22,10 @@ class ListPage extends Component {
   }
 
   gotoDetail = (id) => {
-    ProblemStore.retrieve(id).then(() => {
-      this.props.history.push(`/problem/${id}/`);
-    }).catch((e) => {
+    ProblemStore.retrieve(id).catch((e) => {
       console.log(e);
+    }).then(() => {
+      this.props.history.push(`/problem/${id}/`);
     });
   };
 

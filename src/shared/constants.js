@@ -6,4 +6,5 @@ export const SUBMISSION_STATUS = {
   TLE: 4,
   MLE: 5,
   PE: 6,
+  SE: 7,
 };

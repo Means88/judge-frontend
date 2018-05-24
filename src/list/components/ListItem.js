@@ -21,7 +21,7 @@ export default class ListItem extends React.Component {
           <h3 className="title text-ellipsis">
             {title} {this.props.loading && <Icon icon={faSpinner} spin />}
           </h3>
-          <div className="description">
+          <div className="description text-ellipsis">
             {description}
           </div>
         </div>

@@ -12,5 +12,6 @@ export function getStatusConfig(status) {
     [SUBMISSION_STATUS.TLE]: { text: 'Time Limit Exceeded', color: 'warning', abbr: 'TLE' },
     [SUBMISSION_STATUS.MLE]: { text: 'Memory Limit Exceeded', color: 'warning', abbr: 'MLE' },
     [SUBMISSION_STATUS.PE]: { text: 'Presentation Error', color: 'warning', abbr: 'PE' },
+    [SUBMISSION_STATUS.SE]: { text: 'System Error', color: 'default', abbr: 'SE' },
   }[status] || { text: '', color: 'default' };
 }
