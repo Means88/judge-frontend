@@ -8,7 +8,7 @@ see [backend](https://github.com/Means88/judge-backend)
 - Docker
 - Python3.6
 - Node.js
-- redis
+- Redis
 
 ## Installation
 
